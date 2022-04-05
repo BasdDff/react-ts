@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {BrowserRouter, Route, Routes} from "react-router-dom"
+import UsersPage from "./pages/UsersPage";
+import TodosPage from "./pages/TodosPage";
+import Test from "./pages/Test";
+import UserItemPage from "./pages/UserItemPage";
+import Layout from "./components/Layout";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Layout/>}>
+                    <Route path="/users" element={<UsersPage/>}/>
+                    <Route path="/users/:userId" element={<UserItemPage/>}/>
+                    <Route path="/todos" element={<TodosPage/>}/>
+                    <Route path="/test" element={<Test/>}/>
+                    <Route path="*" element={<div>Page not found </div>}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
-export default App;
+export default App
